@@ -19,3 +19,5 @@
 !/.config/git
 !/.config/bash
 !/.config/zsh
+
+!/.config/opencode

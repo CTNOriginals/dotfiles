@@ -1,0 +1,3 @@
+[submodule "/home/ctn/.config/opencode"]
+	path = /home/ctn/.config/opencode
+	url = git@github.com:CTNOriginals/opencode.git
