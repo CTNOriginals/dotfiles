@@ -19,9 +19,6 @@ paths get a thin symlink in `$HOME`.
 | `.bashrc` | symlink | `.config/bash/bashrc` |
 | `.zshrc` | symlink | `.config/zsh/zshrc` |
 
-`bash_profile` and `zprofile` are not needed 
-(bash falls back to `.bashrc` for interactive shells; zprofile content was redundant).
-
 ## Adding a new config
 
 ```bash
