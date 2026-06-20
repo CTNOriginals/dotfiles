@@ -11,6 +11,21 @@ sudo pacman -S alacritty tmux waybar zsh neovim hyprland
 reload ~/.bashrc
 ```
 
+## Setup
+
+Configs are stored under `.config/<app>/` in the repo, but tools expect them at specific paths.  
+Symlinks bridge the gap:
+
+| Link | Target |
+|---|---|
+| `~/.bashrc` | `.config/bash/bashrc` |
+| `~/.zshrc` | `.config/zsh/zshrc` |
+
+`.bashrc` sources `.config/bash/bash_aliases` (where the `dotfiles` alias lives).  
+`.zshrc` sources `~/.bashrc`, so aliases work in both shells.
+
+The repo root also has `.profile` (sources `.bashrc`) and `.gitignore` (see reference below).
+
 ## Reference
 
 The [`.gitignore`](./.gitignore) uses an ignore-all (`/*`) then whitelist (`!/.config/<app>`) pattern.
