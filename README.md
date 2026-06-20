@@ -1,42 +1,53 @@
 # CTN dotfiles
 
-Managed with a bare git repo at `~/.dotfiles` tracked via
-`dotfiles` alias: `git --git-dir=$HOME/.dotfiles --work-tree=$HOME`
+Managed with a bare git repo at `~/.dotfiles` (alias: `dotfiles`).
+
+## How it works
+
+The bare repo uses `$HOME` as its worktree. A `.gitignore` at `$HOME`
+ignores everything by default and whitelists only specific paths.
 
 ## Layout
 
-All config files live in `~/.config/{bash,zsh,git}/`. Thin symlinks
-in `$HOME` point to them as entry points.
+Config files live in `~/.config/<app>/`. Shells that can't read XDG
+paths get a thin symlink in `$HOME`.
 
-| `$HOME` | Type | Real location in `~/.config/` |
-|---------|------|------------------------------|
-| `.bashrc` | symlink | `~/.config/bash/bashrc` |
-| `.zshrc` | symlink | `~/.config/zsh/zshrc` |
-| `.gitconfig` | — | `~/.config/git/config` (native XDG) |
+### Shell symlinks
 
-- `.bash_profile` lives at `~/.config/bash/bash_profile` (not symlinked;
-  bash falls back to `.bashrc` on interactive shells anyway)
-- `.bash_aliases` lives at `~/.config/bash/bash_aliases`, sourced from
-  `~/.config/bash/bashrc`
-- `.zprofile` was redundant (same PATH line in `.zshrc`) and deleted
-- `.gtkrc-2.0` was unused (gtk2 not installed) and deleted
-- `.gitignore` stays at `~/.gitignore` — controls the dotfiles bare
-  repo worktree
+| `$HOME` | Type | Target |
+|---------|------|--------|
+| `.bashrc` | symlink | `.config/bash/bashrc` |
+| `.zshrc` | symlink | `.config/zsh/zshrc` |
+
+`bash_profile` and `zprofile` are not needed 
+(bash falls back to `.bashrc` for interactive shells; zprofile content was redundant).
+
+## Adding a new config
+
+```bash
+# 1. Whitelist it in ~/.gitignore
+!/.config/<app>
+
+# 2. Track it
+dotfiles add .config/<app>
+
+# 3. Commit
+dotfiles commit -m "add: <app> config"
+dotfiles push
+```
 
 ## Fresh-machine bootstrap
 
 ```bash
 git clone --bare git@github.com:CTNOriginals/dotfiles.git $HOME/.dotfiles
-
-# Set up dotfiles alias for the session
 alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
-# Create required directories
-mkdir -p ~/.config/{bash,zsh,git}
+# Create dirs for tracked configs
+mkdir -p ~/.config/{alacritty,bash,git,tmux,waybar,zsh}
 
-# Checkout (may fail on existing stock files; back them up or remove)
+# Checkout (may conflict with stock files — back up or remove them)
 dotfiles checkout
 
-# Verify symlinks exist in $HOME
+# Verify shell symlinks
 ls -la ~/.bashrc ~/.zshrc
 ```
