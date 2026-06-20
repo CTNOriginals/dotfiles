@@ -1,0 +1,29 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	name = CTNOriginals
+	email = info@ctn-originals.com
+[credential]
+	helper = cache --timeout=86400
+[maintenance]
+	repo = /home/ctn/code/bitburner/ctn-bitburner-nvim
+	repo = /home/ctn/code/bitburner/gofilesync
+[alias]
+	adog = log --all --decorate --oneline --graph
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
+[core]
+	editor = vim
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[push]
+	autoSetupRemote = true

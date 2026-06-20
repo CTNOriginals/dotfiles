@@ -1,0 +1,32 @@
+alias install='sudo pacman -S '
+alias reload='source ~/.bashrc'
+alias aliases='nvim ~/.bashrc_aliases'
+alias confnvim='cd ~/.config/nvim/ && nvim'
+alias FUCK='shutdown now'
+
+alias lsa='ls -A'
+lsdepth () {
+	find . -maxdepth ${1:-0} -type d -ls ${@:2}
+}
+
+alias tree='tree --filesfirst -C'
+treel() {
+	tree -L ${1:-1} ${@:2}
+}
+treela() {
+	tree -aL ${1:-1} ${@:2}
+}
+
+alias hyprconf='cd ~/.config/hypr && nvim'
+alias hyprreload='hyprctl reload config-only'
+alias hyprkenisis='hyprctl keyword source ~/.config/hypr/kenisis/init.conf'
+
+alias bbrun='~/code/bitburner/bitburner-src/.build/bitburner-linux-x64/bitburner'
+alias bbfilesync='cdbbfilesync && go run main.go --dir ~/code/bitburner/ctn-bitburner-nvim/ '
+alias cdbb='cd ~/code/bitburner/'
+alias cdbbctn='cd ~/code/bitburner/ctn-bitburner-nvim/'
+alias cdbbfilesync='cd ~/code/bitburner/gofilesync/'
+alias cdbbsrc='cd ~/code/bitburner/bitburner-src/'
+
+
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
