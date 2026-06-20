@@ -1,6 +1,13 @@
 # Ignore everything by default
 /*
+!/.config/
+/.config/*
 
-# Whitelist specifics
+# Whitelist
 !/.gitignore
 !/README.md
+
+## configs
+!/.config/alacritty
+!/.config/waybar
+!/.config/tmux

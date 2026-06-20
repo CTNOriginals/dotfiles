@@ -1,0 +1,25 @@
+[window]
+dynamic_padding = true
+
+[window.padding]
+x = 0
+y = 0
+
+[terminal]
+shell = "zsh"
+
+[mouse]
+hide_when_typing = true
+bindings = [ { mouse = "Right", mods = "Control", action = "Paste" } ]
+
+[keyboard]
+bindings = [
+  { key = "Return", mods = "Shift", chars = "\u001b[13;2u" },
+]
+
+[font]
+size = 10.5
+
+[font.normal]
+family = "RobotoMono Nerd Font"
+style = "Regular"

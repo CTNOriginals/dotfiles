@@ -1,0 +1,1 @@
+echo $(playerctl metadata title)
