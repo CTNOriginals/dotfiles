@@ -6,6 +6,7 @@
 # Whitelist
 !/.gitignore
 !/README.md
+!/.profile
 
 ## configs
 !/.config/alacritty
