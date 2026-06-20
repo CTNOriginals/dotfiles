@@ -1,50 +1,30 @@
 # CTN dotfiles
 
-Managed with a bare git repo at `~/.dotfiles` (alias: `dotfiles`).
+bare-repo dotfiles managed via `git --git-dir=$HOME/.dotfiles --work-tree=$HOME` (alias `dotfiles`).
 
-## How it works
+## Quick start
 
-The bare repo uses `$HOME` as its worktree. A `.gitignore` at `$HOME`
-ignores everything by default and whitelists only specific paths.
-
-## Layout
-
-Config files live in `~/.config/<app>/`. Shells that can't read XDG
-paths get a thin symlink in `$HOME`.
-
-### Shell symlinks
-
-| `$HOME` | Type | Target |
-|---------|------|--------|
-| `.bashrc` | symlink | `.config/bash/bashrc` |
-| `.zshrc` | symlink | `.config/zsh/zshrc` |
-
-## Adding a new config
-
-```bash
-# 1. Whitelist it in ~/.gitignore
-!/.config/<app>
-
-# 2. Track it
-dotfiles add .config/<app>
-
-# 3. Commit
-dotfiles commit -m "add: <app> config"
-dotfiles push
+```sh
+git clone --recursive git@github.com:CTNOriginals/dotfiles.git $HOME
+ln -sf .config/bash/bashrc ~/.bashrc && ln -sf .config/zsh/zshrc ~/.zshrc
+sudo pacman -S alacritty tmux waybar zsh neovim hyprland
+reload ~/.bashrc
 ```
 
-## Fresh-machine bootstrap
+## Reference
 
-```bash
-git clone --bare git@github.com:CTNOriginals/dotfiles.git $HOME/.dotfiles
-alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+The [`.gitignore`](./.gitignore) uses an ignore-all (`/*`) then whitelist (`!/.config/<app>`) pattern.
 
-# Create dirs for tracked configs
-mkdir -p ~/.config/{alacritty,bash,git,tmux,waybar,zsh}
+| What | Command |
+|---|---|
+| track a new config | add `!/.config/<app>` to `.gitignore` → `dotfiles add .config/<app>` → commit |
+| untrack a config | remove `!/.config/<app>` from `.gitignore` → `dotfiles rm .config/<app>` → commit |
+| list tracked | `dotfiles-tracked` |
+| submodule status | `dotfiles submodule status` |
+| bump a submodule | `dotfiles add .config/<name>` → commit → push |
 
-# Checkout (may conflict with stock files — back up or remove them)
-dotfiles checkout
+## Dependencies
 
-# Verify shell symlinks
-ls -la ~/.bashrc ~/.zshrc
+```sh
+sudo pacman -S alacritty tmux waybar zsh neovim hyprland
 ```
