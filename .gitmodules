@@ -1,3 +1,9 @@
 [submodule "/home/ctn/.config/opencode"]
 	path = /home/ctn/.config/opencode
 	url = git@github.com:CTNOriginals/opencode.git
+[submodule "/home/ctn/.config/nvim"]
+	path = /home/ctn/.config/nvim
+	url = git@github.com:CTNOriginals/nvim.git
+[submodule "/home/ctn/.config/hypr"]
+	path = /home/ctn/.config/hypr
+	url = git@github.com:CTNOriginals/hypr.git

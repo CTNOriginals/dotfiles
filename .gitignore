@@ -20,4 +20,6 @@
 !/.config/bash
 !/.config/zsh
 
+!/.config/nvim
+!/.config/hypr
 !/.config/opencode
