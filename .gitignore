@@ -3,6 +3,10 @@
 !/.config/
 /.config/*
 
+# Always ignore patterns
+# regardless of exceptions
+.nvim
+
 # Whitelist
 !/.gitignore
 !/README.md
