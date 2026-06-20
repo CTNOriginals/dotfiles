@@ -1,6 +1,6 @@
 alias install='sudo pacman -S '
 alias reload='source ~/.bashrc'
-alias aliases='nvim ~/.bashrc_aliases'
+alias aliases='nvim ~/.config/bash/bash_aliases'
 alias confnvim='cd ~/.config/nvim/ && nvim'
 alias FUCK='shutdown now'
 
