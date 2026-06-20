@@ -43,3 +43,7 @@ The [`.gitignore`](./.gitignore) uses an ignore-all (`/*`) then whitelist (`!/.c
 ```sh
 sudo pacman -S alacritty tmux waybar zsh neovim hyprland
 ```
+
+## TODO
+
+[ ] Seperate aliases specific to this machine into an ifgored file
