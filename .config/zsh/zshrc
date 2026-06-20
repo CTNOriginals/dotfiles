@@ -112,7 +112,7 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Created by `pipx` on 2026-01-03 12:17:48
-export PATH="$PATH:/home/ctn/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
 # Make Shift+Enter (from Alacritty's CSI u binding) behave like Enter in zsh
 bindkey '\e[13;2u' accept-line
