@@ -11,8 +11,6 @@ alias grep='grep --color=auto'
 
 source '.config/bash/bash_aliases'
 
-eval "$(zoxide init zsh)"
-
 # opencode
 export PATH=.opencode/bin:$PATH
 

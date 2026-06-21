@@ -5,8 +5,8 @@ dynamic_padding = true
 x = 0
 y = 0
 
-[terminal]
-shell = "zsh"
+# [terminal]
+# shell = "zsh"
 
 [mouse]
 hide_when_typing = true
