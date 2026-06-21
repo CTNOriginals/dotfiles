@@ -11,6 +11,10 @@
 [maintenance]
 	repo = /home/ctn/code/bitburner/ctn-bitburner-nvim
 	repo = /home/ctn/code/bitburner/gofilesync
+	repo = /home/ctn/.dotfiles
+	repo = /home/ctn/.config/nvim
+	repo = /home/ctn/.config/hypr
+	repo = /home/ctn/.config/opencode
 [alias]
 	adog = log --all --decorate --oneline --graph
 [pull]
