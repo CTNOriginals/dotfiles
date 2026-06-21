@@ -1,9 +1,12 @@
 [submodule "nvim"]
 	path = .config/nvim
 	url = git@github.com:CTNOriginals/nvim.git
+	branch = main
 [submodule "hypr"]
 	path = .config/hypr
 	url = git@github.com:CTNOriginals/hypr.git
+	branch = main
 [submodule "opencode"]
 	path = .config/opencode
 	url = git@github.com:CTNOriginals/opencode.git
+	branch = main
