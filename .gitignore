@@ -13,6 +13,8 @@
 !/.profile
 
 ## configs
+# !/.config/dotfiles/regenerate-symlinks.sh
+!/.config/dotfiles
 !/.config/alacritty
 !/.config/waybar
 !/.config/tmux
