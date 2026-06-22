@@ -17,7 +17,6 @@
 !/.config/waybar
 !/.config/tmux
 !/.config/git
-!/.config/bash
 !/.config/zsh
 
 !/.config/nvim
