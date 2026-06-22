@@ -1,80 +1,129 @@
 # CTN dotfiles
 
-bare-repo dotfiles managed via `git --git-dir=$HOME/.dotfiles --work-tree=$HOME` (alias `dotfiles`).
+Bare-repo dotfiles managed via `git --git-dir=$HOME/.dotfiles --work-tree=$HOME` (alias `dotfiles`).
+
+Tracked configs live at their natural paths under `$HOME` -- the bare repo on disk at
+`$HOME/.dotfiles` maps file paths straight to the home directory.
 
 ## Quick start
 
+On a fresh machine:
+
 ```sh
-git clone --recursive git@github.com:CTNOriginals/dotfiles.git $HOME
-ln -sf .config/bash/bashrc ~/.bashrc && ln -sf .config/zsh/zshrc ~/.zshrc
-sudo pacman -S alacritty tmux waybar zsh neovim hyprland
-reload ~/.bashrc
+# 1. Clone as a bare repo
+git clone --bare git@github.com:CTNOriginals/dotfiles.git $HOME/.dotfiles
+
+# 2. Define the alias for the current shell session
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+
+# 3. Check out the tracked files into $HOME
+dotfiles checkout
+# If this fails with "untracked working tree files would be overwritten",
+# see Troubleshooting below.
+
+# 4. Init and fetch submodules
+dotfiles submodule update --init --recursive
+
+# 5. Symlink the zsh config so the shell finds it
+ln -sf .config/zsh/zshrc ~/.zshrc
+
+# 6. Install the tools whose configs you see under .config/
+#    (e.g. sudo pacman -S alacritty tmux waybar zsh neovim hyprland)
+
+# 7. Reload zsh config
+source ~/.zshrc
 ```
 
-## Setup
+Verify with `dotfiles status` and `dotfiles submodule status`.
 
-Configs are stored under `.config/<app>/` in the repo, but tools expect them at specific paths.  
-Symlinks bridge the gap:
+## Shell setup
+
+The repo tracks one critical symlink:
 
 | Link | Target |
-|---|---|
-| `~/.bashrc` | `.config/bash/bashrc` |
+|------|--------|
 | `~/.zshrc` | `.config/zsh/zshrc` |
 
-`.bashrc` sources `.config/bash/bash_aliases` (where the `dotfiles` alias lives).  
-`.zshrc` sources `~/.bashrc`, so aliases work in both shells.
+The chain at startup:
 
-The repo root also has `.profile` (sources `.bashrc`) and `.gitignore` (see reference below).
+- **`~/.zshrc`** -- symlinked to `.config/zsh/zshrc`, which sets XDG dirs, points
+  `$ZSH` to `.config/zsh/oh-my-zsh`, and loads Oh My Zsh.
+- **`$ZSH/custom/`** -- contains `init.zsh` that auto-sources files from
+  subdirectories (e.g. `aliases/aliases.zsh`, `startup.zsh`).
+- **`~/.profile`** (repo root) -- sources `~/.zshrc` (with a bash fallback)
+  for display managers and login shells that read `.profile`.
 
-## Reference
+The `dotfiles` alias and other shell helpers live in
+`.config/zsh/custom/aliases/aliases.zsh`.
 
-The [`.gitignore`](./.gitignore) uses an ignore-all (`/*`) then whitelist (`!/.config/<app>`) pattern.
+Other configs in `.config/<app>/` are read directly by their respective tools
+(Alacritty, Waybar, tmux, git, etc.) because they honour XDG_CONFIG_HOME or
+default to `~/.config/<app>/`.
+
+## Managing configs
+
+The `.gitignore` uses an ignore-all / whitelist pattern:
+
+```
+/*                 ignore everything in the repo root
+!/.config/         but not the .config directory itself
+/.config/*         re-ignore everything inside .config
+!/.config/<app>    whitelist specific app configs
+```
 
 | What | Command |
-|---|---|
-| track a new config | add `!/.config/<app>` to `.gitignore` → `dotfiles add .config/<app>` → commit |
-| untrack a config | remove `!/.config/<app>` from `.gitignore` → `dotfiles rm .config/<app>` → commit |
-| list tracked | `dotfiles-tracked` |
- | submodule status | `dotfiles submodule status` |
-| bump a submodule | `dotfiles add .config/<name>` → commit → push |
+|------|---------|
+| Track a new config | Add `!/.config/<app>` to `.gitignore` → `dotfiles add <path>` → commit |
+| Stop tracking / remove | Remove whitelist line from `.gitignore` → `dotfiles rm <path>` → commit |
+| List tracked files | `dotfiles ls-tree -r HEAD --name-only ./` |
+| Submodule status | `dotfiles submodule status` |
+
+To avoid listing every config path manually, run `dotfiles ls-tree -r HEAD --name-only ./ | sort`.
 
 ## Submodules
 
-Submodules track a pinned commit by default (detached HEAD). For repos you actively
-develop, you can tell them to follow the `main` branch instead.
-
-Each entry in `.gitmodules` has a `branch` field:
-
-```ini
-[submodule "nvim"]
-    path = .config/nvim
-    url = git@github.com:CTNOriginals/nvim.git
-    branch = main
-```
-
-### Commands
+The authoritative list lives in `.gitmodules` at the repo root.
+Submodules with a `branch` field track that branch (merged on updates).
+Submodules without a `branch` field stay pinned to a specific commit.
 
 | What | Command |
-|---|---|
-| clone with submodules at latest `main` | `git clone --recurse-submodules --remote <url>` |
-| update every submodule to latest on its branch | `git submodule update --remote --merge` |
-| also switch each submodule out of detached HEAD | see below |
-| pin back to the current SHAs (commit the result) | `git add .config/<name>` → commit → push |
+|------|---------|
+| Clone with submodules at latest `main` | `git clone --recurse-submodules --remote <url>` |
+| Update every submodule to latest on branch | `dotfiles submodule update --remote --merge` |
+| Switch submodules out of detached HEAD | see below |
+| Pin to current SHAs (commit the result) | `dotfiles add .config/<name>` → commit → push |
 
-To get on the actual branch (not detached HEAD) after updating:
+To switch each submodule onto its configured branch after updating:
 
 ```sh
-git submodule foreach -q --recursive \
+dotfiles submodule foreach -q --recursive \
   'b="$(git config -f $toplevel/.gitmodules submodule.$name.branch)"; \
    [ "$b" ] && git switch "$b"'
 ```
 
 ## Dependencies
 
-```sh
-sudo pacman -S alacritty tmux waybar zsh neovim hyprland
-```
+The packages you need are the tools whose configs are tracked under `.config/`.
+Check which are tracked with `dotfiles ls-tree -r HEAD --name-only ./.config/ | sort`,
+then install the corresponding packages for your distro (e.g. `sudo pacman -S <pkg>`).
 
-## TODO
+## Troubleshooting
 
-[ ] Seperate aliases specific to this machine into an ifgored file
+- **`dotfiles checkout` fails** -- "The following untracked working tree files
+  would be overwritten by checkout".  This happens when your home directory
+  already has a file that the repo wants to track.  Back it up or remove it,
+  or move the conflicting files out of the way and re-run `dotfiles checkout`.
+
+- **`dotfiles: command not found`** -- the alias hasn't been defined yet.
+  Run the alias command from Quick Start step 2, or (after checkout) open a
+  new shell which will source the zsh config that defines it.
+
+- **Submodules are empty directories** -- you ran `dotfiles checkout` but
+  forgot `dotfiles submodule update --init --recursive`.  Run it now.
+
+- **Oh My Zsh theme/plugins not loading** -- the oh-my-zsh submodule isn't
+  initialized (see above) or `$ZSH` in `.config/zsh/zshrc` doesn't point to
+  the right path.  Verify `~/.config/zsh/oh-my-zsh/oh-my-zsh.sh` exists.
+
+- **Config changes not tracked** -- check `.gitignore`: the app's directory
+  must be whitelisted with `!/.config/<app>` before Git will see it.
