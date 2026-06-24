@@ -8,7 +8,7 @@
 	// Choose the order of the modules
 	"modules-left": [
 		"hyprland/workspaces",
-		"hyprland/submap",
+		// "hyprland/submap",
 		// "hyprland/scratchpad"
 		// "custom/media"
 		"hyprland/window"
@@ -21,18 +21,18 @@
 	],
 	"modules-right": [
 		// "idle_inhibitor",
-		"pulseaudio",
 		// "network",
 		// "power-profiles-daemon",
 		"clock",
+		"pulseaudio",
 		"battery",
 		"cpu",
 		"memory",
-		// "temperature",
+		"temperature"
 		// "backlight",
 		// "keyboard-state",
 		// "battery#bat2",
-		"tray"
+		// "tray"
 		// "custom/power"
 	],
 	"custom/media": {
@@ -81,18 +81,18 @@
 	    "disable-scroll": true,
 	    "all-outputs": false,
 	    "warp-on-scroll": false,
-	    "format": "{name}: {icon}",
-	    "format-icons": {
-	        "1": " ",
-	        "2": "",
-	        "3": "",
-	        "4": "",
-	        "5": "",
-	        "6": "",
-	        "urgent": "",
-	        "focused": "",
-	        "default": ""
-	    }
+"format": "{name} {icon}",
+"format-icons": {
+    "1": " ",
+    "2": " ",
+    "3": " ",
+    "4": " ",
+    "5": " ",
+    "6": " ",
+    "urgent": " ",
+    "focused": " ",
+    "default": " "
+}
 	},
 	"hyprland/submap": {
 		"format": "<span style=\"italic\">{}</span>"
