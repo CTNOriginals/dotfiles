@@ -19,6 +19,8 @@ alias cdbbfilesync='cd ~/code/bitburner/gofilesync/'
 alias cdbbsrc='cd ~/code/bitburner/bitburner-src/'
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+alias dot='dotfiles'
+alias cddot='cd $HOME/.config/dotfiles'
 alias dotfiles-tracked='dotfiles ls-tree -r HEAD --name-only ./ | sort -u'
 
 alias autonvim='$HOME/.config/nvim/lua/cthemen/exsamples/auto-nvim.zsh'
