@@ -10,6 +10,6 @@
 	path = .config/opencode
 	url = git@github.com:CTNOriginals/opencode.git
 	branch = main
-[submodule ".config/zsh/oh-my-zsh"]
+[submodule "oh-my-zsh"]
 	path = .config/zsh/oh-my-zsh
 	url = https://github.com/ohmyzsh/ohmyzsh.git
