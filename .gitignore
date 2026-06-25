@@ -2,6 +2,8 @@
 /*
 !/.config/
 /.config/*
+!/.config/dotfiles/
+/.config/dotfiles/*
 
 # Always ignore patterns
 # regardless of exceptions
@@ -13,6 +15,7 @@
 !/.profile
 
 ## configs
+!/.config/dotfiles/.ignore
 !/.config/dotfiles/regenerate-symlinks.sh
 !/.config/alacritty
 !/.config/waybar
