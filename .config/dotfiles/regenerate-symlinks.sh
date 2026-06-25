@@ -47,6 +47,8 @@ function makeLink {
 	target=$1
 	# echo link: "$2 > ${2/#"$DOTFILES_DIR/.config/"/"$DOTFILES_DIR/"}"
 	link=${2/#"$DOTFILES_DIR/.config/"/"$DOTFILES_DIR/"}
+	# Prevent git from looping into intelf here
+	link=${link/"$DOTFILES_DIR/.gitignore"/"$DOTFILES_DIR/_.gitignore"}
 
 	if [[ ! -e "$(dirname "$link")" ]]; then
 		echo mkdir -p "$(dirname "$link")"
@@ -62,7 +64,7 @@ count=0
 # Individual file symlinks (files NOT under a fully-tracked dir)
 for file in "${tracked_files[@]}"; do
 	[[ "$file" == ".config/dotfiles/regenerate-symlinks.sh" ]] && continue
-	[[ "$file" == ".gitignore" ]] && continue
+	# [[ "$file" == ".gitignore" ]] && continue
 
 	skip=0
 	for d in "${!full_dirs[@]}"; do
