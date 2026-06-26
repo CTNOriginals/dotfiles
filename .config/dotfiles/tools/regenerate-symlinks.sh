@@ -63,8 +63,7 @@ count=0
 
 # Individual file symlinks (files NOT under a fully-tracked dir)
 for file in "${tracked_files[@]}"; do
-	[[ "$file" == ".config/dotfiles/regenerate-symlinks.sh" ]] && continue
-	# [[ "$file" == ".gitignore" ]] && continue
+	[[ ${file:0:16} == ".config/dotfiles" ]] && continue
 
 	skip=0
 	for d in "${!full_dirs[@]}"; do

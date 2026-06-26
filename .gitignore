@@ -15,8 +15,6 @@
 !/.profile
 
 ## configs
-!/.config/dotfiles/.ignore
-!/.config/dotfiles/regenerate-symlinks.sh
 !/.config/alacritty
 !/.config/waybar
 !/.config/tmux
@@ -26,3 +24,7 @@
 !/.config/nvim
 !/.config/hypr
 !/.config/opencode
+
+### dotfiles
+!/.config/dotfiles/.ignore
+!/.config/dotfiles/tools
