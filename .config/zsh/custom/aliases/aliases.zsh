@@ -25,7 +25,7 @@ alias dotfiles-tracked='dotfiles ls-tree -r HEAD --name-only ./ | sort -u'
 
 alias autonvim='$HOME/.config/nvim/lua/cthemen/exsamples/auto-nvim.zsh'
 
-function tmux-cwd {
+function tmuxcwd {
 	local session=$(basename "$PWD" | tr ' .' '_-')
 	tmux new-session -A -s "$session"
 }
