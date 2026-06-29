@@ -1,4 +1,4 @@
-alias tree='tree --filesfirst -C'
+alias tree='tree --dirsfirst -C'
 
 # echo Tree aliases loaded
 function treel {

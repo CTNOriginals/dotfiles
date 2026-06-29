@@ -2,6 +2,7 @@ alias install='sudo pacman -S '
 alias reload='source ~/.zshrc'
 alias FUCK='shutdown now'
 
+alias ls='ls --group-directories-first --color=tty'
 alias lsa='ls -A'
 lsdepth () {
 	find . -maxdepth ${1:-0} -type d -ls ${@:2}
