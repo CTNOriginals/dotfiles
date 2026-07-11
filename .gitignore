@@ -20,6 +20,7 @@
 !/.config/tmux
 !/.config/git
 !/.config/zsh
+!/.config/pipewire/
 
 !/.config/nvim
 !/.config/hypr
