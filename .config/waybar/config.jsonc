@@ -48,15 +48,19 @@
 		},
 		"escape": true,
 		"on-click": "playerctl play-pause",
-		"interval": 2,
-		"exec": "~/.config/waybar/media-text.sh" //| sed -e 's/&/&amp;/g' -e 's/</&lt;/g' -e 's/>/&gt;/g'"
+		// "interval": 1,
+		"exec": "playerctl --follow metadata --format '{{title}} | {{artist}}'"
+		// "exec": "~/.config/waybar/media-text.sh" //| sed -e 's/&/&amp;/g' -e 's/</&lt;/g' -e 's/>/&gt;/g'"
 		// playerctl metadata --format '{{title}} | {{artist}}' 2>/dev/null
 		// "exec": "echo $(playerctl metadata title ; echo \"(\"$(playerctl metadata artist)\")\")"
 	},
 	"custom/volume": {
 		"format": "{}%",
-		"interval": 1,
-		"exec": "~/.config/waybar/media-volume.sh"
+		// "interval": 1,
+		// "restart-interval": 1,
+		"signal": 1,
+		// "exec": "cat $FS_MUSIC_VOLUME"
+		"exec": "./media-volume.sh"
 	},
 	"pulseaudio": {
 		// "scroll-step": 1, // %, can be a float
@@ -78,21 +82,21 @@
 	},
 	// Modules configuration
 	"hyprland/workspaces": {
-	    "disable-scroll": true,
-	    "all-outputs": false,
-	    "warp-on-scroll": false,
-"format": "{name} {icon}",
-"format-icons": {
-    "1": " ",
-    "2": " ",
-    "3": " ",
-    "4": " ",
-    "5": " ",
-    "6": " ",
-    "urgent": " ",
-    "focused": " ",
-    "default": " "
-}
+		"disable-scroll": true,
+		"all-outputs": false,
+		"warp-on-scroll": false,
+		"format": "{name} {icon}",
+		"format-icons": {
+			"1": " ",
+			"2": " ",
+			"3": " ",
+			"4": " ",
+			"5": " ",
+			"6": " ",
+			"urgent": " ",
+			"focused": " ",
+			"default": " "
+		}
 	},
 	"hyprland/submap": {
 		"format": "<span style=\"italic\">{}</span>"
