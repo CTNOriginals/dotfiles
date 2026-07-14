@@ -171,10 +171,17 @@ window#waybar {
 
 #custom-media {
     color: #00eeaa;
+	/* background-color: #ff0000; */
+	/* border-bottom: solid 3px green; */
     padding: 0 10px;
     margin: 3px 2px;
     min-width: 80px;
 }
+/* #custom-media.text-button { */
+/* 	background-color: #ff0000; */
+/* 	background: linear-gradient(90deg, #00ff00 0%, #00ff00 40%, #ffffff 60%, #ffffff 100%); */
+/* 	color: purple; */
+/* } */
 
 #custom-media.custom-spotify {
     color: #00eeaa;
