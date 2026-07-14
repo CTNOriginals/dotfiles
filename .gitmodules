@@ -13,3 +13,6 @@
 [submodule "oh-my-zsh"]
 	path = .config/zsh/oh-my-zsh
 	url = https://github.com/ohmyzsh/ohmyzsh.git
+[submodule "apps/eww"]
+	path = apps/eww
+	url = git@github.com:elkowar/eww.git

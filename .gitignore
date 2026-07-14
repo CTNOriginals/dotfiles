@@ -4,6 +4,8 @@
 /.config/*
 !/.config/dotfiles/
 /.config/dotfiles/*
+!/apps/
+/apps/*
 
 # Always ignore patterns
 # regardless of exceptions
@@ -14,6 +16,7 @@
 !/.gitignore
 !/README.md
 !/.profile
+!/apps/eww
 
 ## configs
 !/.config/alacritty
@@ -21,7 +24,8 @@
 !/.config/tmux
 !/.config/git
 !/.config/zsh
-!/.config/pipewire/
+!/.config/pipewire
+!/.config/eww
 
 !/.config/nvim
 !/.config/hypr
