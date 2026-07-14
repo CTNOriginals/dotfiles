@@ -55,12 +55,13 @@
 		// "exec": "echo $(playerctl metadata title ; echo \"(\"$(playerctl metadata artist)\")\")"
 	},
 	"custom/volume": {
-		"format": "{}%",
-		// "interval": 1,
+		"format": "{text}%",
+		"return-type": "text",
+		// "interval": "once",
 		// "restart-interval": 1,
 		"signal": 1,
 		// "exec": "cat $FS_MUSIC_VOLUME"
-		"exec": "./media-volume.sh"
+		"exec": "$XDG_CONFIG_HOME/waybar/media-volume.sh"
 	},
 	"pulseaudio": {
 		// "scroll-step": 1, // %, can be a float
