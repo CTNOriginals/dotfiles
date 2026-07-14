@@ -8,6 +8,7 @@
 # Always ignore patterns
 # regardless of exceptions
 .nvim
+*.out
 
 # Whitelist
 !/.gitignore
