@@ -56,5 +56,8 @@ fi
 
 export PATH=$PATH:$HOME/.opencode/bin
 
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
 # Created by `pipx` on 2026-01-03 12:17:48
 # export PATH="$PATH:$HOME/.local/bin"
