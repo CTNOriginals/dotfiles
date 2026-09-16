@@ -6,6 +6,11 @@
 /.config/dotfiles/*
 !/apps/
 /apps/*
+!/apps/pkgbuilds/
+/apps/pkgbuilds/*
+!/apps/pkgbuilds/*/
+/apps/pkgbuilds/*/*
+!/apps/pkgbuilds/*/PKGBUILD
 
 # Always ignore patterns
 # regardless of exceptions
