@@ -1,0 +1,19 @@
+pkgname=typescript-bin
+pkgver=7.0.2
+pkgrel=3
+options=('!strip' '!debug')
+pkgdesc="Native Go port of the TypeScript compiler (tsc) - prebuilt binary"
+arch=('x86_64')
+url="https://github.com/microsoft/TypeScript"
+license=('Apache-2.0')
+provides=('tsc')
+# conflicts=('typescript')  # the old nodejs-based package
+source=("${pkgname}-${pkgver}-linux-x64.tgz::https://github.com/microsoft/TypeScript/releases/download/v${pkgver}/typescript-linux-x64.tgz")
+sha256sums=('7ecad6f67377e831856367ab062ef394f21506a611405bf8ac0ff039348637d3')
+
+package() {
+	install -Dm755 "$srcdir/package/lib/tsc" "$pkgdir/usr/lib/typescript/tsc"
+	install -Dm644 "$srcdir/package/lib/"lib*.d.ts "$pkgdir/usr/lib/typescript/"
+	install -d "$pkgdir/usr/bin"
+	ln -s /usr/lib/typescript/tsc "$pkgdir/usr/bin/tsc"
+}
