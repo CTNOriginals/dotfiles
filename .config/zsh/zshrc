@@ -12,6 +12,9 @@ export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 export ZSH="$HOME/.config/zsh/oh-my-zsh"
 export ZSH_CUSTOM="$HOME/.config/zsh/custom"
 
+# Additional PATH exports
+export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME/claude"
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
